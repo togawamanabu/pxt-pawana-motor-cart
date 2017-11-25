@@ -1,0 +1,18 @@
+{
+    "name": "pawana-motor-cart",
+    "version": "0.0.0",
+    "description": "pawanna motor cart driver",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "radio": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": false
+}
