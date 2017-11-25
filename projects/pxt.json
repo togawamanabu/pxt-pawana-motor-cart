@@ -1,0 +1,14 @@
+{
+    "name": "題名未設定",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "pxt-pawana-motor-cart": "file:../pxt-pawana-motor-cart"
+    },
+    "description": "",
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ]
+}
