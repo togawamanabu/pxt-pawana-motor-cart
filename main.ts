@@ -22,7 +22,8 @@ namespace pawana {
     //% blockId=pawana_motordriver_motor_on
     //% block="%motor|オン 方向 %dir|スピード %speed"
     //% speed.min=0 speed.max=100
-    export function motorOn(motor: Motors, dir: MotorDirection, speed: number): void {
+    //% weight=40
+    export function motorOn(motor: Motors, dir: MotorDirection, speed: number = 100): void {
       let OutputVal = Math.clamp(0, 100, speed) * 10;
 
       switch (motor) {
@@ -73,6 +74,7 @@ namespace pawana {
   //%subcategory=MotorDriver
   //% blockId=pawana_motordriver_motor_off
   //%block="モーター停止 %motor"
+  //% weight=30
   export function motorOff(motor: Motors): void {
       switch (motor) {
           case Motors.Motor1:
@@ -96,7 +98,7 @@ namespace pawana {
   //% blockId=pawana_motordriver_motor_turn
   //% block="方向 %dir|にスピード %speed|で回転"
   //% speed.min=0 speed.max=100
-  export function motorTurn(dir:  MotorDirection, speed: number): void {
+  export function motorTurn(dir:  MotorDirection, speed: number = 100): void {
     let OutputVal = Math.clamp(0, 100, speed) * 10;
     
     switch (dir) {
@@ -120,7 +122,8 @@ namespace pawana {
   //% blockId=pawana_motordriver_motor_go_and_stop
   //% block="方向 %dir|にスピード %speed|で進んで %timespan|ミリ秒後にストップ"
   //% speed.min=0 speed.max=100
-  export function motorGoAndStop(dir:  MotorDirection, speed: number, timespan: number) : void {
+  //% weight=10
+  export function motorGoAndStop(dir:  MotorDirection, speed: number = 100, timespan: number = 1000) : void {
     let OutputVal = Math.clamp(0, 100, speed) * 10;
     
     switch (dir) {
@@ -150,7 +153,8 @@ namespace pawana {
   //% blockId=pawana_motordriver_motor_turn_and_stop
   //% block="方向 %dir|にスピード %speed|で回転して %timespan|ミリ秒後にストップ"
   //% speed.min=0 speed.max=100
-  export function motorTurnAndStop(dir:  MotorDirection, speed: number, timespan: number) : void {
+  //% weight=20
+  export function motorTurnAndStop(dir:  MotorDirection, speed: number = 100, timespan: number = 1000) : void {
     let OutputVal = Math.clamp(0, 100, speed) * 10;
     
     switch (dir) {
