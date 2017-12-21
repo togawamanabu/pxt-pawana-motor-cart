@@ -94,7 +94,7 @@ namespace pawana {
   
   //%subcategory=MotorDriver
   //% blockId=pawana_motordriver_motor_turn
-  //% block="回転 方向 %dir|スピード %speed"
+  //% block="方向 %dir|にスピード %speed|で回転"
   //% speed.min=0 speed.max=100
   export function motorTurn(dir:  MotorDirection, speed: number): void {
     let OutputVal = Math.clamp(0, 100, speed) * 10;
@@ -118,7 +118,7 @@ namespace pawana {
   
   //%subcategory=MotorDriver
   //% blockId=pawana_motordriver_motor_go_and_stop
-  //% block=" 方向 %dir|スピード %speed"|ストップ %timespan"ミリ秒後
+  //% block="方向 %dir|にスピード %speed|で進んでストップ %timespan|ミリ秒後"
   //% speed.min=0 speed.max=100
   export function motorGoAndStop(dir:  MotorDirection, speed: number, timespan: number) : void {
     let OutputVal = Math.clamp(0, 100, speed) * 10;
