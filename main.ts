@@ -21,7 +21,7 @@ namespace pawana {
     //% subcategory=MotorDriver
     //% blockId=pawana_motordriver_motor_on
     //% block="%motor|オン 方向 %dir|スピード %speed"
-    //% speed.min=0 speed.max=100
+    //% speed.min=0 speed.max=100 speed.defl=100
     //% weight=40
     export function motorOn(motor: Motors, dir: MotorDirection, speed: number = 100): void {
       let OutputVal = Math.clamp(0, 100, speed) * 10;
@@ -97,7 +97,7 @@ namespace pawana {
   //%subcategory=MotorDriver
   //% blockId=pawana_motordriver_motor_turn
   //% block="方向 %dir|にスピード %speed|で回転"
-  //% speed.min=0 speed.max=100
+  //% speed.min=0 speed.max=100 
   export function motorTurn(dir:  MotorDirection, speed: number = 100): void {
     let OutputVal = Math.clamp(0, 100, speed) * 10;
     
