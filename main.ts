@@ -12,7 +12,10 @@ namespace pawana {
         Motor1,
         //%blockId=pawana_motordriver_motor_two
         //% block="モーター2"
-        Motor2
+        Motor2,
+        //%blockId=pawana_motordriver_motor_one_and_two
+        //% block="モーター1+2"
+        Motor1_2
     }
 
     //% subcategory=MotorDriver
@@ -46,10 +49,27 @@ namespace pawana {
                       pins.analogWritePin(AnalogPin.P13, OutputVal);
                       pins.digitalWritePin(DigitalPin.P14, 0);
                       break
-              }
+              }            
               break;
+          
+          case Motors.Motor1_2:
+            switch (dir) {
+                case MotorDirection.Forward:
+                    pins.analogWritePin(AnalogPin.P11, OutputVal);
+                    pins.digitalWritePin(DigitalPin.P12, 0);
+                    pins.analogWritePin(AnalogPin.P13, OutputVal);
+                    pins.digitalWritePin(DigitalPin.P14, 0);
+                    break
+                case MotorDirection.Reverse:
+                    pins.analogWritePin(AnalogPin.P11, OutputVal);
+                    pins.digitalWritePin(DigitalPin.P12, 0);
+                    pins.analogWritePin(AnalogPin.P13, OutputVal);
+                    pins.digitalWritePin(DigitalPin.P14, 0);
+                    break
+            }
       }
   }
+  
   //%subcategory=MotorDriver
   //% blockId=pawana_motordriver_motor_off
   //%block="モーター停止 %motor"
@@ -63,6 +83,68 @@ namespace pawana {
               pins.digitalWritePin(DigitalPin.P13, 0);
               pins.digitalWritePin(DigitalPin.P14, 0);
               break
+          case Motors.Motor1_2:
+              pins.digitalWritePin(DigitalPin.P11, 0);
+              pins.digitalWritePin(DigitalPin.P12, 0);
+              pins.digitalWritePin(DigitalPin.P13, 0);
+              pins.digitalWritePin(DigitalPin.P14, 0);
+              break
       }
   }
+  
+  //%subcategory=MotorDriver
+  //% blockId=pawana_motordriver_motor_turn
+  //% block="回転 方向 %dir|スピード %speed"
+  //% speed.min=0 speed.max=100
+  export function motorTurn(dir:  MotorDirection, speed: number): void {
+    let OutputVal = Math.clamp(0, 100, speed) * 10;
+    
+    switch (dir) {
+      case MotorDirection.Forward:
+          pins.analogWritePin(AnalogPin.P11, OutputVal);
+          pins.digitalWritePin(DigitalPin.P12, 0);
+          pins.analogWritePin(AnalogPin.P13, OutputVal);
+          pins.digitalWritePin(DigitalPin.P14, 0);                    
+          break
+          
+      case MotorDirection.Reverse:
+          pins.analogWritePin(AnalogPin.P11, OutputVal);
+          pins.digitalWritePin(DigitalPin.P12, 0);
+          pins.analogWritePin(AnalogPin.P13, OutputVal);
+          pins.digitalWritePin(DigitalPin.P14, 0);          
+          break
+      }
+  }
+  
+  //%subcategory=MotorDriver
+  //% blockId=pawana_motordriver_motor_go_and_stop
+  //% block=" 方向 %dir|スピード %speed"|ストップ %timespan"ミリ秒後
+  //% speed.min=0 speed.max=100
+  export function motorGoAndStop(dir:  MotorDirection, speed: number, timespan: number) : void {
+    let OutputVal = Math.clamp(0, 100, speed) * 10;
+    
+    switch (dir) {
+      case MotorDirection.Forward:
+          pins.analogWritePin(AnalogPin.P11, OutputVal);
+          pins.digitalWritePin(DigitalPin.P12, 0);
+          pins.analogWritePin(AnalogPin.P13, OutputVal);
+          pins.digitalWritePin(DigitalPin.P14, 0);        
+          break
+      case MotorDirection.Reverse:
+          pins.analogWritePin(AnalogPin.P11, OutputVal);
+          pins.digitalWritePin(DigitalPin.P12, 0);
+          pins.analogWritePin(AnalogPin.P13, OutputVal);
+          pins.digitalWritePin(DigitalPin.P14, 0);
+          break      
+    }
+    
+    basic.pause(timespan);
+    
+    pins.digitalWritePin(DigitalPin.P11, 0);
+    pins.digitalWritePin(DigitalPin.P12, 0);
+    pins.digitalWritePin(DigitalPin.P13, 0);
+    pins.digitalWritePin(DigitalPin.P14, 0);
+  }
+  
+  
 }
