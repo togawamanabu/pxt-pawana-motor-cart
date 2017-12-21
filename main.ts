@@ -146,5 +146,36 @@ namespace pawana {
     pins.digitalWritePin(DigitalPin.P14, 0);
   }
   
+  //%subcategory=MotorDriver
+  //% blockId=pawana_motordriver_motor_turn_and_stop
+  //% block="方向 %dir|にスピード %speed|で回転して %timespan|ミリ秒後にストップ"
+  //% speed.min=0 speed.max=100
+  export function motorTurnAndStop(dir:  MotorDirection, speed: number, timespan: number) : void {
+    let OutputVal = Math.clamp(0, 100, speed) * 10;
+    
+    switch (dir) {
+      case MotorDirection.Forward:
+          pins.analogWritePin(AnalogPin.P11, OutputVal);
+          pins.digitalWritePin(DigitalPin.P12, 0);
+          pins.analogWritePin(AnalogPin.P14, OutputVal);
+          pins.digitalWritePin(DigitalPin.P13, 0);
+                 
+          break
+      case MotorDirection.Reverse:
+          pins.analogWritePin(AnalogPin.P12, OutputVal);
+          pins.digitalWritePin(DigitalPin.P11, 0);
+          pins.analogWritePin(AnalogPin.P13, OutputVal);
+          pins.digitalWritePin(DigitalPin.P14, 0);           
+          
+          break      
+    }
+    
+    basic.pause(timespan);
+    
+    pins.digitalWritePin(DigitalPin.P11, 0);
+    pins.digitalWritePin(DigitalPin.P12, 0);
+    pins.digitalWritePin(DigitalPin.P13, 0);
+    pins.digitalWritePin(DigitalPin.P14, 0);
+  }
   
 }
